@@ -21,7 +21,7 @@ def home(request):
             return redirect('home')
         else:
             messages.error(request, 'yo invalid data')
-            redirect('home')
+            return redirect('home')
     else:
         return render(request, 'home.html', {'records':records})
 
@@ -41,11 +41,10 @@ def signup(req):
             user=authenticate(username=username,password=password)
             login(req,user)
             messages.success(req,'yo welcome to the crib!')
-            redirect('home')
+            return redirect('home')
     else:
         form=signupform()
-        
-    return render(req,'register.html',{'frm':form})
+        return render(req,'register.html',{'frm':form})
     
 
 
