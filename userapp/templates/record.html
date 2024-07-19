@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="col-md-6 offset-md-3">
+
+    <h3 style="text-align: center; margin: 50px;">Customer</h3>
+
+    <br/>
+
+    
+        <div class="card text-bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header"><h2>{{ record.username }}</h2></div>
+            <div class="card-body">
+              <h5 class="card-title"><mark style="background-color: yellow;"><strong><label>id -> </label></strong>{{ record.id }}</mark></h5>
+              <p class="card-text"><strong>Email: </strong>{{ record.email }}</p>
+              <p class="card-text"><strong>Ph: </strong>{{ record.number }}</p>
+              <p class="card-text"><strong>Orgin: </strong>{{ record.country }}</p>
+              <p class="card-text"><strong>Social: </strong>{{ record.platform }}</p>
+            </div>
+          </div>
+
+    <br/>
+
+    <a href="{% url 'home' %}" class="btn btn-primary">back</a>
+    <a href="{% url 'delete' record.id %}" class="btn btn-primary" style="background-color: red;">delete</a>
+    <a href="{% url 'update' record.id %}" class="btn btn-primary" style="background-color: rgb(255, 162, 0);">update</a>
+
+
+</div>
+
+
+
+
+
+
+{% endblock %}

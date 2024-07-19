@@ -1,11 +1,13 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 from django import forms
+from .models import record
 
-def signupform(UserCreationForm):
-    email=forms.EmailField(label="",widget=forms.TextInput(attrs={'class':'form-control','plaxeholder':'email address'}))
-    first_name=forms.CharField(label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','plaxeholder':'fname'}))
-    last_name=forms.CharField(label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','plaxeholder':'lname'}))
+class signupform(UserCreationForm):
+    email=forms.EmailField(label="",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'email address'}))
+    first_name=forms.CharField(label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'fname'}))
+    last_name=forms.CharField(label="",max_length=100,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'lname'}))
 
     class Meta:
         model=User
@@ -30,4 +32,15 @@ def signupform(UserCreationForm):
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
 
 
+class addform(forms.ModelForm):
+    username= forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Username", "class":"form-control"}), label="")
+    email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Email", "class":"form-control"}), label="")
+    number = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
+    country = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Country", "class":"form-control"}), label="")
+    platform= forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Social", "class":"form-control"}), label="")
+    class Meta:
+        model = record
+        fields='__all__'
+        
 
+        

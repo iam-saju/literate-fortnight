@@ -2,12 +2,59 @@
 
 {% block content %}
 
+
+{% if user.is_authenticated %}
+
+<div class="col-md-6 offset-md-3">
+
+    <h3 style="text-align: center;margin: 40px;">welcome</h3>
+
+    <br/>
+
+    <h5 style="text-align: center;margin-bottom: 20px;"><mark style="background-color: yellow;">Records</mark></h5>
+
+
+    {% if records %}
+    <table class="table table-striped-columns">
+
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">username</th>
+              <th scope="col">number</th>
+              <th scope="col">email</th>
+              <th scope="col">country</th>
+              <th scope="col">platform</th>
+            </tr>
+          </thead>
+
+          {% for record in records %}
+          <tbody>
+            <tr>
+              <th scope="row"><a href="{% url 'customer' record.id %}">{{ record.id }}</a></th>
+              <td> {{ record.username }}</td>
+              <td>{{ record.number }}</td>
+              <td>{{ record.email }}</td>
+              <td>{{ record.country }}</td>
+              <td>{{ record.platform }}</td>
+
+            </tr>
+          </tbody>
+          {% endfor %}
+    </table>
+
+    {% endif %}
+
+</div>
+
+
+{% else %}
 <div class="col-md-6 offset-md-3">
     <h1>login</h1>
 </div>
 
 <div class="col-md-6 offset-md-3">
-<form method="post" action="{% url 'base' %}">
+<form method="post" action="{% url 'home' %}">
     {% csrf_token %}
     
         <div class="mb-3" style="width: 300px;">
@@ -25,6 +72,8 @@
         <button type="submit" class="btn btn-primary">login</button>
 
 </form>
+
+{% endif %}
 
 </div>
 
