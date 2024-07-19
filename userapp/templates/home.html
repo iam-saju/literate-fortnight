@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <h1>login</h1>
+</div>
+
+<div class="col-md-6 offset-md-3">
+<form method="post" action="{% url 'base' %}">
+    {% csrf_token %}
+    
+        <div class="mb-3" style="width: 300px;">
+          <label for="exampleInputEmail1" class="form-label">username</label>
+          <input type="username" class="form-control" id="username" aria-describedby="emailHelp" name="username" required 
+           placeholder="entr username">
+        
+        </div>
+
+        <div class="mb-3" style="width: 300px;">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control"  required id="password" name="password" placeholder="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">login</button>
+
+</form>
+
+</div>
+
+
+
+{% endblock %}
